@@ -1,8 +1,9 @@
 locals {
   repository_ref_list = flatten([
-    for repo in var.repository_names :
-    "repo:${var.github_username}/${repo}:*"
-
+    for repo in var.repository_names : [
+      "repo:${var.github_username}/${repo}:*",
+      "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_id}:*"
+    ]
   ])
 }
 
