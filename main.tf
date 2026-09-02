@@ -7,9 +7,9 @@ locals {
   immutable_repository_refs = (
     var.github_owner_id != null && var.github_repository_id != null
     ? [
-        for repo in var.repository_names :
-        "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_id}:*"
-      ]
+      for repo in var.repository_names :
+      "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_id}:*"
+    ]
     : []
   )
 
