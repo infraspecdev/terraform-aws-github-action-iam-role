@@ -18,3 +18,15 @@ variable "role_name" {
   type        = string
   default     = "GithubActionsRole"
 }
+
+variable "github_owner_id" {
+  description = "The GitHub owner ID associated with the repository."
+  type        = string
+  default     = null
+}
+
+variable "github_repository_id" {
+  description = "The GitHub repository ID."
+  type        = string
+  default     = null
+}
