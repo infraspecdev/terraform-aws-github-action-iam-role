@@ -1,10 +1,22 @@
 locals {
-  repository_ref_list = flatten([
-    for repo in var.repository_names : [
-      "repo:${var.github_username}/${repo}:*",
-      "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_id}:*"
-    ]
-  ])
+  legacy_repository_refs = [
+    for repo in var.repository_names :
+    "repo:${var.github_username}/${repo}:*"
+  ]
+
+  immutable_repository_refs = (
+    var.github_owner_id != null && var.github_repository_id != null
+    ? [
+        for repo in var.repository_names :
+        "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_id}:*"
+      ]
+    : []
+  )
+
+  repository_ref_list = concat(
+    local.legacy_repository_refs,
+    local.immutable_repository_refs
+  )
 }
 
 data "aws_iam_policy_document" "assume_role" {
