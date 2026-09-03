@@ -147,7 +147,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | The AWS Account ID | `string` | n/a | yes |
 | <a name="input_github_owner_id"></a> [github\_owner\_id](#input\_github\_owner\_id) | The GitHub owner ID associated with the repository. | `string` | `null` | no |
-| <a name="input_github_repository_id"></a> [github\_repository\_id](#input\_github\_repository\_id) | The GitHub repository ID. | `string` | `null` | no |
+| <a name="input_github_repository_ids"></a> [github\_repository\_ids](#input\_github\_repository\_ids) | Map of GitHub repository names to their immutable repository IDs | `map(string)` | `{}` | no |
 | <a name="input_github_username"></a> [github\_username](#input\_github\_username) | The name of the GitHub user or organization that owns the repository(ies) the role will use | `string` | n/a | yes |
 | <a name="input_repository_names"></a> [repository\_names](#input\_repository\_names) | List of names of the GitHub repository that will be allowed to assume the role | `list(string)` | n/a | yes |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | The name of the IAM Role to be created | `string` | `"GithubActionsRole"` | no |
