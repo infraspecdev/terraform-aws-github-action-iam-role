@@ -5,10 +5,11 @@ locals {
   ]
 
   immutable_repository_refs = (
-    var.github_owner_id != null && var.github_repository_id != null
+    var.github_owner_id != null
     ? [
       for repo in var.repository_names :
-      "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_id}:*"
+      "repo:${var.github_username}@${var.github_owner_id}/${repo}@${var.github_repository_ids[repo]}:*"
+      if contains(keys(var.github_repository_ids), repo)
     ]
     : []
   )
@@ -54,6 +55,7 @@ resource "aws_iam_openid_connect_provider" "github_oidc" {
     "6938fd4d98bab03faadb97b34396831e3780aea1"
   ]
 }
+
 resource "aws_iam_role" "github_action" {
   name               = var.role_name
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
