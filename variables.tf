@@ -25,8 +25,8 @@ variable "github_owner_id" {
   default     = null
 }
 
-variable "github_repository_id" {
-  description = "The GitHub repository ID."
-  type        = string
-  default     = null
+variable "github_repository_ids" {
+  description = "Map of GitHub repository names to their immutable repository IDs"
+  type        = map(string)
+  default     = {}
 }
